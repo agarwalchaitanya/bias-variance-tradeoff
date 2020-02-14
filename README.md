@@ -30,6 +30,10 @@ The error can be simplified into form with $Bias$ and $Variance$ terms.
 
 $$ Error(x) = Bias^2 + Variance + Irreducible Error $$
 
+Model is too simple with too few parameters then it may have high bias and low variance.
+If model is too complex with too many parameters then it may have low bias and high variance. 
+So, we have to find a balance without overfitting or underfitting the data.
+The tradeoff in complexity is why it's a tradeoff, sice an algorithm can't be complex and simple simultaneouly.
 
 ## Implementation
 
