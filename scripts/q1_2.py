@@ -6,6 +6,7 @@ from sklearn.linear_model import LinearRegression
 from sklearn.preprocessing import PolynomialFeatures
 import pandas as pd
 from q1_1 import preprocess
+import tabulate
 
 def prepare_reg(X_train, y_train, X_test, y_test, degree_of_polynomial):
     poly = PolynomialFeatures(degree=degree_of_polynomial)
@@ -27,7 +28,8 @@ def plot_bias_variance(X_trains, y_trains, X_test, y_test, degrees):
             deg_var.append(tmp_deg_var)
         bias_square.append(np.mean(deg_bias_square))
         var.append(np.mean(deg_var))
-    print(pd.DataFrame(data=list(zip(bias_square, var)), index=degrees, columns=['bias square', 'variance'])) 
+    df = pd.DataFrame(data=list(zip(degrees,bias_square, var)), index=degrees, columns=['degree','bias square', 'variance'])
+    print(tabulate.tabulate(df.values,df.columns,tablefmt='pipe')) 
     fig, ax = plt.subplots()
     ax.plot(degrees, bias_square, 'b', label='bias square')
     ax.plot(degrees, var, 'r', label='var')

@@ -3,3 +3,4 @@ matplotlib
 sklearn
 numpy
 tqdm
+tabulate

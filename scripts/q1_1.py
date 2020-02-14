@@ -7,6 +7,7 @@ from sklearn.model_selection import train_test_split
 from sklearn.linear_model import LinearRegression
 from sklearn.preprocessing import PolynomialFeatures
 import matplotlib.pyplot as plt
+import tabulate
 
 def preprocess(path_to_pickle):
     dataset = pickle.load(open(path_to_pickle, 'rb'))
@@ -40,7 +41,8 @@ def plot_bias_variance(X_trains, y_trains, X_test, y_test, degrees):
         reg_deg_bias_square, reg_deg_var = prepare_reg(X_trains, y_trains, X_test, y_test, deg)
         bias_square.append(reg_deg_bias_square)
         var.append(reg_deg_var)
-    print(pd.DataFrame(data=list(zip(bias_square, var)), index=degrees, columns=['bias square', 'variance'])) 
+    df = pd.DataFrame(data=list(zip(degrees,bias_square, var)), index=degrees, columns=['degree','bias square', 'variance'])
+    print(tabulate.tabulate(df.values,df.columns,tablefmt='pipe')) 
     fig, ax = plt.subplots()
     ax.plot(degrees, bias_square, 'b', label='bias square')
     ax.plot(degrees, var, 'r', label='var')
