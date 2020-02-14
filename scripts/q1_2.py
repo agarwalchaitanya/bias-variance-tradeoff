@@ -28,8 +28,13 @@ def plot_bias_variance(X_trains, y_trains, X_test, y_test, degrees):
         bias_square.append(np.mean(deg_bias_square))
         var.append(np.mean(deg_var))
     print(pd.DataFrame(data=list(zip(bias_square, var)), index=degrees, columns=['bias square', 'variance'])) 
-    plt.plot(degrees, bias_square, 'b')
-    plt.plot(degrees, var, 'r')
+    fig, ax = plt.subplots()
+    ax.plot(degrees, bias_square, 'b', label='bias square')
+    ax.plot(degrees, var, 'r', label='var')
+    leg = ax.legend()
+    plt.title('Bias Variance Trade Off')
+    plt.xlabel('Model Complexity')
+    plt.ylabel('Error')
     plt.show()
 
 if __name__ == "__main__":
