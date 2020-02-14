@@ -32,6 +32,42 @@ $$ Error(x) = Bias^2 + Variance + Irreducible Error $$
 
 
 ## Implementation
+### Question 1
+>![q1 architecture](assets/q1.png)
+
+#### Preprocessing
+We read the pickle using `pickle.load` and split the dataset obtained into train and test sets using `sklearn.model_selection.train_test_split` in a 90:10 ratio. Using `np.split`, we split the train set
+into 10 training sets.
+
+For a given degree `n`, we convert the unidimensional `X_train`, and `X_test` sets into an `n` degree feature set using `sklearn.preprocessing.PolynomialFeatures(n).fit_transform`.
+#### Training
+We fit a linear regression model on every train set suing `sklearn.linear_model.LinearRegression().fit`. We get the predicted sets on the `X_test` set using `sklearn.linear_model.LinearRegression().fit().predict` henceforth reffered by `f'i` where i is between 1 and 10.
+
+#### Testing
+For testing and calculating metrics we follow two approaches:
+##### 1. Voting and Aggregating
+Here we consider the bag of 10 models `f'1(x), f'2(x)..., f'10(x)` as our aggregated model `f'(x)` where `f'(x) = mean(f'1(x) + f'2(x) + ... + f'10(x))`. For calculating metrics, we do the following:
+- `np.var(f')` for variance
+- `np.mean((np.mean(f')-f')**2)` for bias square
+  
+##### 2. Averaging Metrics
+Here we consider every model individually and calculate the metrics for each, using:
+- `var_i = np.var(f'i)`
+- `bias_square_i = np.mean((np.mean(f'i)-f'i)**2)` 
+
+Finally, we average all the `var_i` and `bias_square_i` values to get the variance and the bias square respectively.
+
+### Question 2
+![q2 architecture](assets/q2.png)
+
+#### Preprocessing
+We read the pickles using `pickle.load` where the train set is split into 20 train subsets.
+
+#### Training
+***We follow the same routine here as in Question 1 but for 20 train sets.***
+
+#### Testing
+***We follow the same routine here as in Question 1 but for 20 train sets.***
 
 ## Tables
 ### Table 1_1
