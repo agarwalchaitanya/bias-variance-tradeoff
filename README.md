@@ -9,6 +9,31 @@ pip3 install -r requirements.txt
 ```
 to run the scripts, cd into the [`scripts`](scripts/) folder and run `$ python3 <script name>`
 
+## Definitions
+### Bias
+Bias is inherent error that you obtain from your classifier. Bias is taken as the difference between the expected (or average) prediction of our model and the correct value which we are trying to predict.
+
+$$ Bias^2 = (E[\hat{f}(x)]-f(x))^2 $$
+
+### Variance
+Variance captures how much your classifier changes if you train on a different training set. 
+Variance is how much the predictions for a given point vary between different realizations of the model.
+
+$$ Variance = E[(\hat{f}(x) - E[\hat{f}(x)])^2] $$
+
+### Bias-Variance Tradeoff
+If we denote the variable we are trying to predict as $Y$ and our covariates as $X$, we may assume that there is a relationship relating one to the other such as $Y=f(X)+ϵ$ where the error term $ϵ$ is normally distributed with a mean of zero like so $ϵ∼N(0,σ_ϵ)$.
+We model $\hat{f}(x)$ of $\hat{f}(x)$, and the expected prediction error is:
+
+$$ Error(x) = E[(Y-\hat{f}(x))^2] $$ 
+The error can be simplified into form with $Bias$ and $Variance$ terms.
+
+$$ Error(x) = Bias^2 + Variance + Irreducible Error $$
+
+
+## Implementation
+
+## Tables
 ### Table 1_1
 |   degree |   bias square |   variance |
 |---------:|--------------:|-----------:|
